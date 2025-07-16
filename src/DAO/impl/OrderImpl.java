@@ -13,28 +13,24 @@ import Util.UQuery;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.List;
-
+import java.sql.*;
 /**
  *
  * @author baoha
  */
 public class OrderImpl {
-    public static final String goiDoUong = "SELECT L.TenLoai AS LoaiMon, M.TenMon, M.DonGia, M.HinhAnh\n" +
-"FROM MonAn M\n" +
+    public static final String goiDoUong = "SELECT M.MaMon, M.* FROM MonAn M\n" +
 "JOIN LoaiMon L ON M.MaLoai = L.MaLoai\n" +
-"WHERE L.TenLoai = N'Đồ uống'";
-    public static final String goiMonLau = "SELECT L.TenLoai AS LoaiMon, M.TenMon, M.DonGia, M.HinhAnh\n" +
-"FROM MonAn M\n" +
+"WHERE L.MaLoai = 1";
+    public static final String goiMonLau = "SELECT M.MaMon, M.* FROM MonAn M\n" +
 "JOIN LoaiMon L ON M.MaLoai = L.MaLoai\n" +
-"WHERE L.TenLoai = N'Món lẩu'";
-    public static final String goiMonNuong = "SELECT L.TenLoai AS LoaiMon, M.TenMon, M.DonGia, M.HinhAnh\n" +
-"FROM MonAn M\n" +
+"WHERE L.MaLoai = 2";
+    public static final String goiMonNuong = "SELECT M.MaMon, M.* FROM MonAn M\n" +
 "JOIN LoaiMon L ON M.MaLoai = L.MaLoai\n" +
-"WHERE L.TenLoai = N'Món nướng'";
-    public static final String goiMoNhe = "SELECT L.TenLoai AS LoaiMon, M.TenMon, M.DonGia, M.HinhAnh\n" +
-"FROM MonAn M\n" +
+"WHERE L.MaLoai = 3";
+    public static final String goiMoNhe = "SELECT M.MaMon, M.* FROM MonAn M\n" +
 "JOIN LoaiMon L ON M.MaLoai = L.MaLoai\n" +
-"WHERE L.TenLoai = N'Món nhẹ'";
+"WHERE L.MaLoai = 4";
     public static final String sqlBanAn = "SELECT MaBan, SoBan, TrangThai\n" +
 "FROM BanAn";
     public static final String sqlHoaDon = "EXEC sp_ThemHoaDon \n" +
@@ -43,34 +39,65 @@ public class OrderImpl {
 "    @NgayLap = ?,\n" +
 "    @TongTien = ?,\n" +
 "    @HinhThucTT = ?;";
-    public static final String sqlcreate = "EXEC sp_ThemChiTietHoaDon ?, ?, ?, ?, ?, NULL;";
+
     public static final String timkiemall = "SELECT L.TenLoai AS LoaiMon, M.TenMon, M.DonGia, M.HinhAnh\n" +
 "FROM MonAn M\n" +
 "JOIN LoaiMon L ON M.MaLoai = L.MaLoai\n";
     public HoaDon create(HoaDon entity) {
-        Object[] values = {
-            entity.getMaBan(),
-            entity.getMaNV(),
-            entity.getNgayLap(),
-            entity.getTongTien(),
-            entity.getHinhThucTT(),
-        };
-        UJdbc.executeUpdate(sqlHoaDon, values);
-        return entity;
-    }
-    public void insertChiTietHoaDon(String maHD, String MaMon, int SoLuong, String GhiChu, String TrangThai) {
-        try (CallableStatement cs = UJdbc.openConnection().prepareCall(sqlcreate)) {
-            cs.setString(1, maHD);
-            cs.setString(2, MaMon);
-            cs.setString(3, GhiChu);
-            cs.setInt(4, SoLuong);
-            cs.setString(5, TrangThai);
-            cs.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    try (Connection con = UJdbc.openConnection();
+         CallableStatement cs = con.prepareCall("{call sp_ThemHoaDon(?, ?, ?, ?, ?)}")) {
+
+        cs.setString(1, entity.getMaBan());
+        cs.setString(2, entity.getMaNV());
+        cs.setTimestamp(3, new java.sql.Timestamp(System.currentTimeMillis())); // Ngày lập
+        cs.setDouble(4, 0); // Tổng tiền ban đầu
+        cs.setString(5, entity.getHinhThucTT());
+
+        boolean hasResult = cs.execute();
+
+        if (hasResult) {
+            try (ResultSet rs = cs.getResultSet()) {
+                if (rs.next()) {
+                    String newMaHD = rs.getString("MaHD");
+                    entity.setMaHD(newMaHD);
+                    System.out.println(" Mã hóa đơn mới tạo: " + newMaHD); // Debug
+                } else {
+                    System.err.println(" Không nhận được MaHD từ sp_ThemHoaDon");
+                }
+            }
+        } else {
+            System.err.println(" sp_ThemHoaDon không trả về kết quả");
         }
-         
+
+        return entity;
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Lỗi khi tạo hóa đơn: " + e.getMessage(), e);
     }
+}
+public void insertChiTietHoaDon(String MaHD, String MaMon, int SoLuong, String GhiChu, String TrangThai, String MaVanDon) {
+    if (MaHD == null || MaHD.isEmpty()) {
+        throw new IllegalArgumentException(" MaHD không được null khi thêm chi tiết hóa đơn");
+    }
+
+    try (Connection con = UJdbc.openConnection();
+         CallableStatement cs = con.prepareCall("{call sp_ThemChiTietHoaDon(?, ?, ?, ?, ?, ?)}")) {
+
+        cs.setString(1, MaHD);
+        cs.setString(2, MaMon);
+        cs.setInt(3, SoLuong);
+        cs.setString(4, GhiChu);
+        cs.setString(5, TrangThai);
+        cs.setString(6, MaVanDon);
+
+        cs.executeUpdate();
+
+    } catch (SQLException e) {
+        throw new RuntimeException("Lỗi khi thêm chi tiết hóa đơn: " + e.getMessage(), e);
+    }
+}
+
+
         public List<MonAn> timkiemdouong(String keyword) {
     String sql = timkiemall
         + " WHERE L.TenLoai = N'Đồ uống' AND M.TenMon LIKE ? OR M.DonGia LIKE ? ";

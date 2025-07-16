@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -37,7 +38,7 @@ public class goimon extends javax.swing.JPanel implements OrderController{
      */
     public goimon() {
         initComponents();
-        
+         
     }
 
     /**
@@ -116,7 +117,7 @@ public class goimon extends javax.swing.JPanel implements OrderController{
                 {null, null, null, null}
             },
             new String [] {
-                "Tên loại", "Tên", "Giá", "Ảnh"
+                "Mã món", "Tên", "Giá", "Ảnh"
             }
         ));
         tblDoUong.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -273,15 +274,22 @@ public class goimon extends javax.swing.JPanel implements OrderController{
 
         tblGoimon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Tổng tiền"
+                "Mã món", "Tên sản phẩm", "Số lượng", "Tổng tiền"
             }
         ));
+        tblGoimon.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblGoimonAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                tblGoimonAncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane2.setViewportView(tblGoimon);
 
         btnDongY.setBackground(new java.awt.Color(173, 139, 115));
@@ -326,6 +334,11 @@ public class goimon extends javax.swing.JPanel implements OrderController{
         lblTongTien.setText("0.0");
 
         cboBanAn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboBanAn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboBanAnMouseClicked(evt);
+            }
+        });
         cboBanAn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboBanAnActionPerformed(evt);
@@ -447,6 +460,7 @@ public class goimon extends javax.swing.JPanel implements OrderController{
     private void tblDoUongAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDoUongAncestorAdded
         // TODO add your handling code here:
         filltoTableDoUong();
+        
     }//GEN-LAST:event_tblDoUongAncestorAdded
 
     private void tblMonLauAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblMonLauAncestorAdded
@@ -471,56 +485,110 @@ public class goimon extends javax.swing.JPanel implements OrderController{
 
     private void tblDoUongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoUongMouseClicked
         // TODO add your handling code here:
-        int row = tblDoUong.getSelectedRow();
-        if (row != -1) {
-            String maSP = tblDoUong.getValueAt(row, 0).toString();
-            String tenSP = tblDoUong.getValueAt(row, 1).toString();
-            double gia = (double) tblDoUong.getValueAt(row, 2);
-            
-            filltoTableGoiMon(maSP, tenSP, gia);
-        }
+    int row = tblDoUong.getSelectionModel().getLeadSelectionIndex(); // luôn chính xác dòng đang click
+
+if (row != -1) {
+    Object oMaMon = tblDoUong.getValueAt(row, 0);
+    Object oTenMon = tblDoUong.getValueAt(row, 1);
+    Object oGia = tblDoUong.getValueAt(row, 2);
+
+    if (oTenMon != null && oGia != null) {
+        String MaMon = oMaMon.toString();
+        String tenMon = oTenMon.toString();
+        double gia = (oGia instanceof Number) ? ((Number) oGia).doubleValue() : Double.parseDouble(oGia.toString());
+
+        filltoTableGoiMon(MaMon, tenMon, gia); // dùng TenMon làm mã tạm
+    } else {
+        JOptionPane.showMessageDialog(null, "Một trong các cột bị null!");
+    }
+
+}
+
+
     }//GEN-LAST:event_tblDoUongMouseClicked
 
     private void tblMonLauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonLauMouseClicked
         // TODO add your handling code here:
-        int row = tblMonLau.getSelectedRow();
-        if (row != -1) {
-            String maSP = String.valueOf(tblMonLau.getValueAt(row, 0));
-            String tenSP = String.valueOf(tblMonLau.getValueAt(row, 1));
-            double gia = (double) tblMonLau.getValueAt(row, 2);
-            
-            filltoTableGoiMon(maSP, tenSP, gia);
-        }
+    int row = tblMonLau.getSelectionModel().getLeadSelectionIndex(); // luôn chính xác dòng đang click
+
+if (row != -1) {
+     Object oMaMon = tblMonLau.getValueAt(row, 0);
+    Object oTenMon = tblMonLau.getValueAt(row, 1);
+    Object oGia = tblMonLau.getValueAt(row, 2);
+
+    if (oTenMon != null && oGia != null) {
+        String MaMon = oMaMon.toString();
+        String tenMon = oTenMon.toString();
+        double gia = (oGia instanceof Number) ? ((Number) oGia).doubleValue() : Double.parseDouble(oGia.toString());
+
+        filltoTableGoiMon(MaMon, tenMon, gia); // dùng TenMon làm mã tạm
+    } else {
+        JOptionPane.showMessageDialog(null, "Một trong các cột bị null!");
+    }
+}
     }//GEN-LAST:event_tblMonLauMouseClicked
 
     private void tblMonNuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonNuongMouseClicked
         // TODO add your handling code here:
-        int row = tblMonNuong.getSelectedRow();
-        if (row != -1) {
-            String maSP = tblMonNuong.getValueAt(row, 0).toString();
-            String tenSP = tblMonNuong.getValueAt(row, 1).toString();
-            double gia = (double) tblMonNuong.getValueAt(row, 2);
-            
-            filltoTableGoiMon(maSP, tenSP, gia);
-        }
+               int row = tblMonNuong.getSelectionModel().getLeadSelectionIndex(); // luôn chính xác dòng đang click
+
+if (row != -1) {
+    Object oMaMon = tblMonNuong.getValueAt(row, 0);
+    Object oTenMon = tblMonNuong.getValueAt(row, 1);
+    Object oGia = tblMonNuong.getValueAt(row, 2);
+
+    if (oTenMon != null && oGia != null) {
+        String MaMon = oMaMon.toString();
+        String tenMon = oTenMon.toString();
+        double gia = (oGia instanceof Number) ? ((Number) oGia).doubleValue() : Double.parseDouble(oGia.toString());
+
+        filltoTableGoiMon(tenMon, tenMon, gia); // dùng TenMon làm mã tạm
+    } else {
+        JOptionPane.showMessageDialog(null, "Một trong các cột bị null!");
+    }
+}
     }//GEN-LAST:event_tblMonNuongMouseClicked
 
     private void tblMonNheMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonNheMouseClicked
         // TODO add your handling code here:
-        int row = tblMonNhe.getSelectedRow();
-        if (row != -1) {
-            String maSP = tblMonNhe.getValueAt(row, 0).toString();
-            String tenSP = tblMonNhe.getValueAt(row, 1).toString();
-            double gia = (double) tblMonNhe.getValueAt(row, 2);
-            
-            filltoTableGoiMon(maSP, tenSP, gia);
-        }
+               int row = tblMonNhe.getSelectionModel().getLeadSelectionIndex(); // luôn chính xác dòng đang click
+
+if (row != -1) {
+        Object oMaMon = tblMonNuong.getValueAt(row, 0);
+    Object oTenMon = tblMonNhe.getValueAt(row, 1);
+    Object oGia = tblMonNhe.getValueAt(row, 2);
+
+    if (oTenMon != null && oGia != null) {
+        String MaMon = oMaMon.toString();
+        String tenMon = oTenMon.toString();
+        double gia = (oGia instanceof Number) ? ((Number) oGia).doubleValue() : Double.parseDouble(oGia.toString());
+
+        filltoTableGoiMon(tenMon, tenMon, gia); // dùng TenMon làm mã tạm
+    } else {
+        JOptionPane.showMessageDialog(null, "Một trong các cột bị null!");
+    }
+
+}
     }//GEN-LAST:event_tblMonNheMouseClicked
 
     private void cboBanAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBanAnActionPerformed
         // TODO add your handling code here:
-        filltoCombo();
+        
     }//GEN-LAST:event_cboBanAnActionPerformed
+
+    private void cboBanAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboBanAnMouseClicked
+        // TODO add your handling code here:
+        filltoCombo();
+    }//GEN-LAST:event_cboBanAnMouseClicked
+
+    private void tblGoimonAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblGoimonAncestorAdded
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tblGoimonAncestorAdded
+
+    private void tblGoimonAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblGoimonAncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblGoimonAncestorMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -574,7 +642,7 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
                 Image scaledImage = icon.getImage().getScaledInstance(194, 149, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcon = new ImageIcon(scaledImage);
             Object[] rowData = {
-                item.getTenLoai(),
+                item.getMaMon(),
                 item.getTenMon(),
                 item.getDonGia(),
                 scaledIcon,
@@ -594,10 +662,11 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
         }
         return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
     }
-});    
+});   
+        
     }
 
-    @Override
+    @Override   
     public void filltoTableMonLau() {
     DefaultTableModel model = (DefaultTableModel) tblMonLau.getModel();
             model.setRowCount(0);
@@ -616,9 +685,9 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
                     Image scaledImage = icon.getImage().getScaledInstance(194, 149, Image.SCALE_SMOOTH);
                     ImageIcon scaledIcon = new ImageIcon(scaledImage);
                 Object[] rowData = {
-                    item.getTenLoai(),
-                    item.getTenMon(),
-                    item.getDonGia(),
+                    item.getMaMon(),
+                item.getTenMon(),
+                item.getDonGia(),
                     scaledIcon,
                     false
                 };
@@ -657,9 +726,9 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
                         Image scaledImage = icon.getImage().getScaledInstance(194, 149, Image.SCALE_SMOOTH);
                         ImageIcon scaledIcon = new ImageIcon(scaledImage);
                     Object[] rowData = {
-                        item.getTenLoai(),
-                        item.getTenMon(),
-                        item.getDonGia(),
+                        item.getMaMon(),
+                item.getTenMon(),
+                item.getDonGia(),
                         scaledIcon,
                         false
                     };
@@ -699,9 +768,9 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
                         Image scaledImage = icon.getImage().getScaledInstance(194, 149, Image.SCALE_SMOOTH);
                         ImageIcon scaledIcon = new ImageIcon(scaledImage);
                     Object[] rowData = {
-                        item.getTenLoai(),
-                        item.getTenMon(),
-                        item.getDonGia(),
+                        item.getMaMon(),
+                item.getTenMon(),
+                item.getDonGia(),
                         scaledIcon,
                         false
                     };
@@ -744,9 +813,9 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
 
             for (MonAn item : list) {
                 Object[] row = {
-                    item.getTenMon(),
-                    item.getTenLoai(),
-                    item.getDonGia(),
+                    item.getMaMon(),
+                item.getTenMon(),
+                item.getDonGia(),
                     false
                 };
                 model.addRow(row);
@@ -767,9 +836,9 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
 
             for (MonAn item : list) {
                 Object[] row = {
-                    item.getTenMon(),
-                    item.getTenLoai(),
-                    item.getDonGia(),
+                    item.getMaMon(),
+                item.getTenMon(),
+                item.getDonGia(),
                     false
                 };
                 model.addRow(row);
@@ -830,7 +899,7 @@ DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
 if (UDialog.confirm("Bạn thực sự muốn thêm hóa đơn?")) {
     
         HoaDon entity = new HoaDon();
-        entity.setMaNV(UAuth.user.getMaNV());
+        entity.setMaNV("NV01");
         entity.setHinhThucTT(String.valueOf(cboPTTT.getSelectedItem()));
 
         String selected = String.valueOf(cboBanAn.getSelectedItem());
@@ -847,9 +916,10 @@ if (UDialog.confirm("Bạn thực sự muốn thêm hóa đơn?")) {
             String tenSP = model.getValueAt(i, 1).toString();
             int soLuong = Integer.parseInt(model.getValueAt(i, 2).toString());
             double giaTien = Double.parseDouble(model.getValueAt(i, 3).toString());
-            String ghiChu = "";
+            String ghiChu = "";x
             String trangThai = "";
-            dao.insertChiTietHoaDon(entity.getMaHD(), maSP,soLuong, ghiChu,trangThai  );
+            String maVanDon = null; // Đặt null thay vì ""
+            dao.insertChiTietHoaDon(entity.getMaHD(), maSP, soLuong, ghiChu, trangThai, maVanDon);
         }
         UDialog.alert("Thêm hóa đơn thành công! Mã hóa đơn: " + entity.getMaHD());
     }    
@@ -862,12 +932,12 @@ if (UDialog.confirm("Bạn thực sự muốn thêm hóa đơn?")) {
     }
 
     @Override
-    public void filltoTableGoiMon(String MaMon, String TenMon, double Gia) {
-        boolean found = false;
+public void filltoTableGoiMon(String TenLoai, String TenMon, double Gia) {
+    boolean found = false;
     DefaultTableModel model = (DefaultTableModel) tblGoimon.getModel();
 
     for (int i = 0; i < model.getRowCount(); i++) {
-        if (model.getValueAt(i, 0).toString().equals(MaMon)) {
+        if (model.getValueAt(i, 0).toString().equals(TenLoai)) {
             int soLuong = (int) model.getValueAt(i, 2);
             soLuong++;
             model.setValueAt(soLuong, i, 2);
@@ -878,22 +948,35 @@ if (UDialog.confirm("Bạn thực sự muốn thêm hóa đơn?")) {
     }
 
     if (!found) {
-        Object[] rowData = { MaMon, TenMon, 1, Gia };
+        Object[] rowData = { TenLoai, TenMon, 1, Gia };
         model.addRow(rowData);
     }
-
     tinhTongTien();
-    }
-    @Override
-    public double  tinhTongTien() {
+}
+
+@Override
+public double tinhTongTien() {
     DefaultTableModel model = (DefaultTableModel) tblGoimon.getModel();
     double tong = 0;
+
     for (int i = 0; i < model.getRowCount(); i++) {
-        tong += (double) model.getValueAt(i, 3);
+        Object val = model.getValueAt(i, 3);
+        if (val instanceof Number) {
+            tong += ((Number) val).doubleValue();
+        } else if (val != null) {
+            try {
+                tong += Double.parseDouble(val.toString().replace(",", ""));
+            } catch (NumberFormatException e) {
+                // Bỏ qua giá trị không hợp lệ
+            }
+        }
     }
-    lblTongTien.setText(String.valueOf(tong));
+
+    lblTongTien.setText(String.format("%.0f", tong)); // format cho đẹp
     return tong;
 }
+
+
     public void filltoCombo(){
     cboBanAn.removeAllItems();
     items = dao.CBOBan(); 

@@ -8,20 +8,26 @@ package Model;
  *
  * @author Admin
  */
-public class MonAn extends LoaiMon{
+public class MonAn  {
     private String maMon;
     private String tenMon;
     private double donGia;
     private String moTa;
     private String hinhAnh;
-
+    public LoaiMon l = new LoaiMon();
     public MonAn(String maMon, String tenMon, double donGia, String moTa, String hinhAnh, int maLoai, String tenLoai, String tenMua) {
-        super(maLoai, tenLoai, tenMua);
+       
         this.maMon = maMon;
         this.tenMon = tenMon;
         this.donGia = donGia;
         this.moTa = moTa;
         this.hinhAnh = hinhAnh;
+    }
+    public String getTenLoai(){
+        return l.getTenLoai();
+    }
+    public void setTenLoai(String TenLoai){
+        l.setTenLoai(TenLoai);
     }
     public MonAn() {
     }

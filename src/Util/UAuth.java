@@ -101,12 +101,12 @@ public class UAuth {
         
         user = NhanVien.builder()
                 .MaNV("NV01")
-                .HoTen("Nguyễn Văn A")
-                .MatKhau("123456")
-                .Email("a@example.com")
-                .LuongCoBan(5000000)
+                .HoTen("Bùi Gia Bảo")
+                .MatKhau("123   ")
+                .Email("baobao1@gmail.com")
+                .LuongCoBan(7000000.00)
                 .NgaySinh(sampleDate)
-                .Anh("default.png")
+                .Anh("nv1.jpg")
                 .build();
     } catch (ParseException e) {
         e.printStackTrace();
