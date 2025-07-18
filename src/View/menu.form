@@ -588,8 +588,6 @@
               <Component id="jLabel46" max="32767" attributes="0"/>
               <Component id="jLabel45" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel54" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel49" alignment="0" pref="208" max="32767" attributes="0"/>
-              <Component id="jLabel61" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel52" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel53" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel58" alignment="0" max="32767" attributes="0"/>
@@ -598,6 +596,9 @@
               <Component id="jLabel60" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel44" alignment="1" max="32767" attributes="0"/>
               <Component id="jSeparator2" max="32767" attributes="0"/>
+              <Component id="jLabel59" alignment="0" max="32767" attributes="0"/>
+              <Component id="jLabel57" alignment="0" max="32767" attributes="0"/>
+              <Component id="jLabel48" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -605,12 +606,11 @@
                           <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel56" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jLabel61" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jLabel49" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="jLabel59" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel57" alignment="0" max="32767" attributes="0"/>
-              <Component id="jLabel48" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -620,7 +620,7 @@
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -632,9 +632,9 @@
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel52" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -859,7 +859,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/icon chi ti&#x1ebf;t &#x111;&#x1eb7;t m&#xf3;n.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Chi ti&#x1ebf;t &#x111;&#x1eb7;t m&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="Chi ti&#x1ebf;t &#x111;&#x1eb7;t b&#xe0;n"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel58">
