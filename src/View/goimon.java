@@ -916,7 +916,7 @@ if (UDialog.confirm("Bạn thực sự muốn thêm hóa đơn?")) {
             String tenSP = model.getValueAt(i, 1).toString();
             int soLuong = Integer.parseInt(model.getValueAt(i, 2).toString());
             double giaTien = Double.parseDouble(model.getValueAt(i, 3).toString());
-            String ghiChu = "";x
+            String ghiChu = "";
             String trangThai = "";
             String maVanDon = null; // Đặt null thay vì ""
             dao.insertChiTietHoaDon(entity.getMaHD(), maSP, soLuong, ghiChu, trangThai, maVanDon);
