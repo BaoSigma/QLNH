@@ -4,13 +4,23 @@
  */
 package View;
 
+import Controller.ModelController.SignInController;
+import DAO.impl.SignInImpl;
+import Model.NhanVien;
+import Util.UDialog;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.UIManager;
+
 
 /**
  *
  * @author User
  */
-public class signup extends javax.swing.JPanel {
-
+public class signup extends javax.swing.JFrame implements SignInController{
+    SignInImpl dao = new SignInImpl();
+    List<NhanVien> item = new ArrayList<>();
     /**
      * Creates new form NewJPanel
      */
@@ -36,10 +46,8 @@ public class signup extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -48,6 +56,10 @@ public class signup extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        DcNgaySinh = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        txtPass = new javax.swing.JPasswordField();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/form_dang_ky_resized_750x750_latest.png"))); // NOI18N
@@ -58,30 +70,16 @@ public class signup extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtUser.setBorder(null);
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtUserActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 380, 30));
+        add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 380, 30));
 
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 380, 30));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 380, 30));
-
-        jTextField4.setBorder(null);
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 380, 30));
+        txtEmail.setBorder(null);
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 380, 30));
 
         jButton1.setBackground(new java.awt.Color(170, 120, 70));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -108,7 +106,7 @@ public class signup extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Số điện thoại");
+        jLabel6.setText("Email");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -137,22 +135,24 @@ public class signup extends javax.swing.JPanel {
         jButton3.setBorder(null);
         jButton3.setOpaque(true);
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, 170, 50));
+        add(DcNgaySinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 292, 380, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        txtPass.setBorder(null);
+        add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 380, 30));
+
+        jCheckBox2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, -1, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background (1).jpg"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 650));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
      // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtUserActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -160,23 +160,107 @@ public class signup extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser DcNgaySinh;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void create() {
+        String Pass = new String(txtPass.getPassword()).trim();
+    String username = txtUser.getText().trim();
+    String email = txtEmail.getText().trim(); 
+    Date ngaySinh = DcNgaySinh.getDate();     
+
+    NhanVien nv = dao.findById(username);
+
+    if (username.isEmpty()) {
+        UDialog.alert("Bạn chưa nhập mã nhân viên!");
+    } else if (nv == null || !username.equals(nv.getMaNV())) {
+        UDialog.alert("Tài khoản nhân viên không tồn tại!");
+    } else {
+        if (Pass.isEmpty()) {
+            UDialog.alert("Vui lòng nhập mật khẩu!");
+        } else if (email.isEmpty()) {
+            UDialog.alert("Vui lòng nhập email!");
+        } else if (ngaySinh == null) {
+            UDialog.alert("Vui lòng chọn ngày sinh!");
+        } else {
+            nv.setMatKhau(Pass);
+            nv.setEmail(email);
+            nv.setNgaySinh(ngaySinh);
+            
+            dao.update(nv);
+            UDialog.alert("Tạo tài khoản thành công!");
+            new login().setVisible(true);
+            dispose();
+        }
+    }
+    }
+
+    @Override
+    public void exit() {
+        SignInController.super.exit(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public void back() {
+    dispose();
+    new login().setVisible(true);    
+    }
+        public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(signup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                new signup().setVisible(true);
+            }
+
+
+        });
+}
 }

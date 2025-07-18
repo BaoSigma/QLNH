@@ -10,12 +10,13 @@ import DAO.impl.Loginimpl;
 import Model.NhanVien;
 import Util.UAuth;
 import Util.UDialog;
+import javax.swing.UIManager;
 
 /**
  *
  * @author User
  */
-public class login extends javax.swing.JPanel implements LoginController    {
+public class login extends javax.swing.JFrame implements LoginController    {
 
     /**
      * Creates new form login
@@ -107,7 +108,7 @@ public class login extends javax.swing.JPanel implements LoginController    {
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 140, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background (1).jpg"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 841, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 841, 650));
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRememberActionPerformed
@@ -182,4 +183,42 @@ String username = txtUser.getText().trim();
     public void exit() {
         LoginController.super.exit(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                new login().setVisible(true);
+            }
+
+
+        });
+}
 }
