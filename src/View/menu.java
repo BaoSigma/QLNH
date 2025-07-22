@@ -343,9 +343,9 @@ public class menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(227, 202, 165));
+        jPanel3.setPreferredSize(new java.awt.Dimension(240, 750));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,6 +353,7 @@ public class menu extends javax.swing.JFrame {
         jLabel4.setText("Menu");
         jLabel4.setMaximumSize(null);
         jLabel4.setMinimumSize(null);
+        jLabel4.setPreferredSize(null);
 
         lblLM.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLM.setForeground(new java.awt.Color(255, 255, 255));
@@ -360,6 +361,7 @@ public class menu extends javax.swing.JFrame {
         lblLM.setText("Loại món");
         lblLM.setMaximumSize(null);
         lblLM.setMinimumSize(null);
+        lblLM.setPreferredSize(null);
 
         lblMonAn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblMonAn.setForeground(new java.awt.Color(255, 255, 255));
@@ -367,6 +369,7 @@ public class menu extends javax.swing.JFrame {
         lblMonAn.setText("Món ăn");
         lblMonAn.setMaximumSize(null);
         lblMonAn.setMinimumSize(null);
+        lblMonAn.setPreferredSize(null);
 
         lblBanAn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblBanAn.setForeground(new java.awt.Color(255, 255, 255));
@@ -374,10 +377,12 @@ public class menu extends javax.swing.JFrame {
         lblBanAn.setText("Bàn ăn");
         lblBanAn.setMaximumSize(null);
         lblBanAn.setMinimumSize(null);
+        lblBanAn.setPreferredSize(null);
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setMaximumSize(null);
         jSeparator1.setMinimumSize(null);
+        jSeparator1.setPreferredSize(null);
 
         lblThongTinCaNhan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblThongTinCaNhan.setForeground(new java.awt.Color(255, 255, 255));
@@ -385,6 +390,7 @@ public class menu extends javax.swing.JFrame {
         lblThongTinCaNhan.setText("Thông tin cá nhân");
         lblThongTinCaNhan.setMaximumSize(null);
         lblThongTinCaNhan.setMinimumSize(null);
+        lblThongTinCaNhan.setPreferredSize(null);
 
         lblKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblKhachHang.setForeground(new java.awt.Color(255, 255, 255));
@@ -392,6 +398,7 @@ public class menu extends javax.swing.JFrame {
         lblKhachHang.setText("Khách hàng");
         lblKhachHang.setMaximumSize(null);
         lblKhachHang.setMinimumSize(null);
+        lblKhachHang.setPreferredSize(null);
 
         lblKhuVuc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblKhuVuc.setForeground(new java.awt.Color(255, 255, 255));
@@ -399,6 +406,7 @@ public class menu extends javax.swing.JFrame {
         lblKhuVuc.setText("Khu vực");
         lblKhuVuc.setMaximumSize(null);
         lblKhuVuc.setMinimumSize(null);
+        lblKhuVuc.setPreferredSize(null);
 
         lblHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblHoaDon.setForeground(new java.awt.Color(255, 255, 255));
@@ -406,6 +414,7 @@ public class menu extends javax.swing.JFrame {
         lblHoaDon.setText("Hóa đơn");
         lblHoaDon.setMaximumSize(null);
         lblHoaDon.setMinimumSize(null);
+        lblHoaDon.setPreferredSize(null);
 
         lblGoiMon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblGoiMon.setForeground(new java.awt.Color(255, 255, 255));
@@ -413,11 +422,13 @@ public class menu extends javax.swing.JFrame {
         lblGoiMon.setText("Gọi món");
         lblGoiMon.setMaximumSize(null);
         lblGoiMon.setMinimumSize(null);
+        lblGoiMon.setPreferredSize(null);
 
         lblChiTietDatMon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblChiTietDatMon.setForeground(new java.awt.Color(255, 255, 255));
         lblChiTietDatMon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblChiTietDatMon.setText("Chi tiết đặt bàn");
+        lblChiTietDatMon.setPreferredSize(null);
 
         lblVanDon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblVanDon.setForeground(new java.awt.Color(255, 255, 255));
@@ -425,6 +436,7 @@ public class menu extends javax.swing.JFrame {
         lblVanDon.setText("Vận đơn");
         lblVanDon.setMaximumSize(null);
         lblVanDon.setMinimumSize(null);
+        lblVanDon.setPreferredSize(null);
 
         lblCTHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblCTHD.setForeground(new java.awt.Color(255, 255, 255));
@@ -432,6 +444,7 @@ public class menu extends javax.swing.JFrame {
         lblCTHD.setText("Chi tiết hóa đơn");
         lblCTHD.setMaximumSize(null);
         lblCTHD.setMinimumSize(null);
+        lblCTHD.setPreferredSize(null);
 
         lblDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblDangXuat.setForeground(new java.awt.Color(255, 255, 255));
@@ -439,6 +452,7 @@ public class menu extends javax.swing.JFrame {
         lblDangXuat.setText("Đăng xuất");
         lblDangXuat.setMaximumSize(null);
         lblDangXuat.setMinimumSize(null);
+        lblDangXuat.setPreferredSize(null);
 
         lblNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNhanVien.setForeground(new java.awt.Color(255, 255, 255));
@@ -446,30 +460,37 @@ public class menu extends javax.swing.JFrame {
         lblNhanVien.setText("Nhân viên");
         lblNhanVien.setMaximumSize(null);
         lblNhanVien.setMinimumSize(null);
+        lblNhanVien.setPreferredSize(null);
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setMaximumSize(null);
         jSeparator3.setMinimumSize(null);
+        jSeparator3.setPreferredSize(null);
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator4.setMaximumSize(null);
         jSeparator4.setMinimumSize(null);
+        jSeparator4.setPreferredSize(null);
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setMaximumSize(null);
         jSeparator5.setMinimumSize(null);
+        jSeparator5.setPreferredSize(null);
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator6.setMaximumSize(null);
         jSeparator6.setMinimumSize(null);
+        jSeparator6.setPreferredSize(null);
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator7.setMaximumSize(null);
         jSeparator7.setMinimumSize(null);
+        jSeparator7.setPreferredSize(null);
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator8.setMaximumSize(null);
         jSeparator8.setMinimumSize(null);
+        jSeparator8.setPreferredSize(null);
 
         lblThoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblThoat.setForeground(new java.awt.Color(255, 255, 255));
@@ -477,6 +498,7 @@ public class menu extends javax.swing.JFrame {
         lblThoat.setText("Thoát");
         lblThoat.setMaximumSize(null);
         lblThoat.setMinimumSize(null);
+        lblThoat.setPreferredSize(null);
 
         lblDoanhThu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblDoanhThu.setForeground(new java.awt.Color(255, 255, 255));
@@ -484,6 +506,7 @@ public class menu extends javax.swing.JFrame {
         lblDoanhThu.setText("Doanh Thu");
         lblDoanhThu.setMaximumSize(null);
         lblDoanhThu.setMinimumSize(null);
+        lblDoanhThu.setPreferredSize(null);
 
         jLabel5.setText("Đóng");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -496,42 +519,49 @@ public class menu extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Đặt bàn trước");
+        jLabel2.setPreferredSize(null);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(21, 21, 21))
-            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblLM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblMonAn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblBanAn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblChiTietDatMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblCTHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblKhuVuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblVanDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblGoiMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblThongTinCaNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblKhuVuc, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVanDon, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGoiMon, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblThongTinCaNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLM, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMonAn, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCTHD, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblChiTietDatMon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBanAn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(lblDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                .addComponent(lblDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jSeparator1, jSeparator3, jSeparator4, jSeparator5, jSeparator6, jSeparator7, jSeparator8, lblBanAn, lblCTHD, lblChiTietDatMon, lblDangXuat, lblDoanhThu, lblGoiMon, lblHoaDon, lblKhachHang, lblKhuVuc, lblLM, lblMonAn, lblNhanVien, lblThoat, lblThongTinCaNhan, lblVanDon});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -552,7 +582,7 @@ public class menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblBanAn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(lblChiTietDatMon)
+                .addComponent(lblChiTietDatMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -594,8 +624,6 @@ public class menu extends javax.swing.JFrame {
                     .addGap(110, 110, 110)))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
-
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logo.png"))); // NOI18N
@@ -617,8 +645,6 @@ public class menu extends javax.swing.JFrame {
         jLabel47.setBackground(new java.awt.Color(173, 139, 115));
         jLabel47.setOpaque(true);
         jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 1220, 80));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 80));
 
         jPanel2.setBackground(new java.awt.Color(227, 202, 165));
 
@@ -807,8 +833,6 @@ public class menu extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1, 709));
-
         jPanel5.setBackground(new java.awt.Color(255, 251, 233));
         jPanel5.setMinimumSize(new java.awt.Dimension(1316, 597));
         jPanel5.setPreferredSize(new java.awt.Dimension(1316, 597));
@@ -959,7 +983,25 @@ public class menu extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1240, 90));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1320, 670));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1320, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

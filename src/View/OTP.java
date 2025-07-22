@@ -4,25 +4,34 @@
  */
 package View;
 
+import DAO.ModelDAO.NhanVienDAO;
+import DAO.impl.Loginimpl;
+import Model.NhanVien;
+import Util.UDialog;
+import Util.UEmail;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 
 /**
  *
  * @author micro
  */
 public class OTP extends javax.swing.JFrame {
-    NhanVienDAO dao = new LoginandSignupimpl();
+    NhanVienDAO dao = new Loginimpl();
     public String generateOTP() {
     Random random = new Random();
     int otp = 100000 + random.nextInt(900000);
     return String.valueOf(otp);
-    }
+}
     /**
      * Creates new form OTP
      */
     public OTP() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     public class OTPStore {
     public static String otp = "";
@@ -47,7 +56,6 @@ public class OTP extends javax.swing.JFrame {
         UDialog.alert(" Đã gửi OTP đến email của bạn!");
     }
 }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,13 +67,12 @@ public class OTP extends javax.swing.JFrame {
 
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtOTP = new javax.swing.JPasswordField();
         txtUser = new javax.swing.JTextField();
         btnClose1 = new javax.swing.JButton();
         btnLogin1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,15 +89,6 @@ public class OTP extends javax.swing.JFrame {
         jLabel8.setText("Email:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, -1, -1));
 
-        txtOTP.setBackground(new java.awt.Color(220, 220, 220));
-        txtOTP.setFont(new java.awt.Font("Barlow Condensed", 0, 30)); // NOI18N
-        txtOTP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOTPActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtOTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 310, -1));
-
         txtUser.setBackground(new java.awt.Color(220, 220, 220));
         txtUser.setFont(new java.awt.Font("Barlow Condensed", 0, 30)); // NOI18N
         getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 310, -1));
@@ -98,7 +96,7 @@ public class OTP extends javax.swing.JFrame {
         btnClose1.setBackground(new java.awt.Color(170, 120, 70));
         btnClose1.setFont(new java.awt.Font("Barlow Condensed", 1, 30)); // NOI18N
         btnClose1.setForeground(new java.awt.Color(255, 255, 255));
-        btnClose1.setText("Gửi lại mã");
+        btnClose1.setText("Gửi mã");
         btnClose1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnClose1MouseClicked(evt);
@@ -125,10 +123,7 @@ public class OTP extends javax.swing.JFrame {
                 btnLogin1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 190, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logo-Photoroom.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        getContentPane().add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Barlow Condensed", 2, 25)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(240, 240, 240));
@@ -142,23 +137,31 @@ public class OTP extends javax.swing.JFrame {
         jLabel2.setText("LẤY MÃ OTP");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1320, -1));
 
+        txtEmail.setBackground(new java.awt.Color(220, 220, 220));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 310, 50));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/background đăng nhập.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOTPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtOTPActionPerformed
-
     private void btnClose1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClose1MouseClicked
         // TODO add your handling code here:
+        dispose();
+        new QuenMK().setVisible(true);
     }//GEN-LAST:event_btnClose1MouseClicked
 
     private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        try {
+            // TODO add your handling code here:
+            createOTP();
+        } catch (MessagingException ex) {
+            Logger.getLogger(OTP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(OTP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnClose1ActionPerformed
 
     private void btnLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin1MouseClicked
@@ -167,7 +170,7 @@ public class OTP extends javax.swing.JFrame {
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
-        new login().setVisible(true);
+        new QuenMK().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
@@ -188,15 +191,11 @@ public class OTP extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new OTP().setVisible(true));
-        public void run() {
-                new OTP().setVisible(true);
-            }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,10 +204,9 @@ public class OTP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField txtOTP;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

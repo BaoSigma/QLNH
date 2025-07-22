@@ -13,6 +13,9 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -50,6 +54,7 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rdoGroupVaiTro = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -68,7 +73,6 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
         jPanel2 = new javax.swing.JPanel();
         lblAnh = new javax.swing.JLabel();
         txtLuong = new javax.swing.JTextField();
-        txtMaVaiTro = new javax.swing.JTextField();
         txtTenNV = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnLamMoi = new javax.swing.JButton();
@@ -80,6 +84,9 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
         jLabel9 = new javax.swing.JLabel();
         txtMaNV = new javax.swing.JTextField();
         btnSua = new javax.swing.JButton();
+        rdoQuanLy = new javax.swing.JRadioButton();
+        rdoNhanVien = new javax.swing.JRadioButton();
+        rdoPhucVu = new javax.swing.JRadioButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 560));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,7 +122,7 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã nhân viên", "Họ tên", "Mã vai trò", "Mật khẩu", "Email", "Lương cơ bản ", "Ngày sinh "
+                "Mã nhân viên", "Họ tên", "Tên vai trò", "Mật khẩu", "Email", "Lương cơ bản ", "Ngày sinh "
             }
         ));
         tblNhanVien.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -203,20 +210,21 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+            .addComponent(lblAnh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAnh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, -1, 176));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, 176));
         add(txtLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 270, -1));
-        add(txtMaVaiTro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 270, -1));
         add(txtTenNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 270, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Mã vai trò:");
+        jLabel7.setText("Tên vai trò:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 96, -1));
 
         btnLamMoi.setText("LÀM MỚI");
@@ -245,7 +253,7 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 610, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 610, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Tên nhân viên:");
@@ -262,6 +270,8 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Lương cơ bản:");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 96, -1));
+
+        txtMaNV.setEnabled(false);
         add(txtMaNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 270, -1));
 
         btnSua.setText("SỬA");
@@ -271,6 +281,18 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
             }
         });
         add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, -1, -1));
+
+        rdoGroupVaiTro.add(rdoQuanLy);
+        rdoQuanLy.setText("Quản lý");
+        add(rdoQuanLy, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, -1, -1));
+
+        rdoGroupVaiTro.add(rdoNhanVien);
+        rdoNhanVien.setText("Nhân Viên");
+        add(rdoNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
+
+        rdoGroupVaiTro.add(rdoPhucVu);
+        rdoPhucVu.setText("Phục vụ");
+        add(rdoPhucVu, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
@@ -300,7 +322,7 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
     private void tblNhanVienAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblNhanVienAncestorAdded
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel(
-            new Object[]{"Mã NV", "Họ Tên", "Mã Vai Trò", "Mật Khẩu", "Email", "Lương Cơ Bản", "Ngày Sinh", "Ảnh"}, 
+            new Object[]{"Mã NV", "Họ Tên", "Tên vai trò", "Mật Khẩu", "Email", "Lương Cơ Bản", "Ngày Sinh", "Ảnh"}, 
             0
         ) {
             @Override
@@ -347,19 +369,38 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+
     JFileChooser chooser = new JFileChooser();
     chooser.setDialogTitle("Chọn ảnh từ máy");
     chooser.setFileFilter(new FileNameExtensionFilter("Hình ảnh", "jpg", "png", "jpeg", "gif"));
 
     int result = chooser.showOpenDialog(this);
     if (result == JFileChooser.APPROVE_OPTION) {
-        File file = chooser.getSelectedFile();
-        tenAnh = file.getAbsolutePath();
+        File fileChon = chooser.getSelectedFile();
+        String tenFile = fileChon.getName();
 
-        ImageIcon icon = new ImageIcon(tenAnh);
-        Image img = icon.getImage().getScaledInstance(206, 176, Image.SCALE_SMOOTH);
-        lblAnh.setIcon(new ImageIcon(img));
+        File thuMucLuu = new File("src/img");
+        if (!thuMucLuu.exists()) {
+            thuMucLuu.mkdirs();
+        }
+
+        File fileDich = new File(thuMucLuu, tenFile);
+        try {
+            // Copy ảnh vào thư mục dự án
+            Files.copy(fileChon.toPath(), fileDich.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            tenAnh = tenFile;
+
+            // Hiển thị ảnh
+            hienThiAnh("src/img/" + tenFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi sao chép ảnh!");
+        }
     }
+
+
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -387,15 +428,22 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnh;
+    private javax.swing.ButtonGroup rdoGroupVaiTro;
+    private javax.swing.JRadioButton rdoNhanVien;
+    private javax.swing.JRadioButton rdoPhucVu;
+    private javax.swing.JRadioButton rdoQuanLy;
     private javax.swing.JTable tblNhanVien;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtLuong;
     private javax.swing.JTextField txtMaNV;
-    private javax.swing.JTextField txtMaVaiTro;
     private javax.swing.JTextField txtTenNV;
     // End of variables declaration//GEN-END:variables
-
+    private void hienThiAnh(String duongDan) {
+    ImageIcon icon = new ImageIcon(duongDan);
+    Image img = icon.getImage().getScaledInstance(206, 176, Image.SCALE_SMOOTH);
+    lblAnh.setIcon(new ImageIcon(img));
+    }
     @Override
     public void open() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -405,7 +453,28 @@ public class QLNV extends javax.swing.JPanel implements NhanVienController{
 public void setForm(NhanVien entity) {
     txtMaNV.setText(entity.getMaNV());
     txtTenNV.setText(entity.getHoTen());
-    txtMaVaiTro.setText(String.valueOf(entity.getMaVaiTro()));
+    if (entity.getTenVaiTro()== null) {
+            // Không chọn gì
+            rdoQuanLy.setSelected(false);
+            rdoNhanVien.setSelected(false);
+            rdoPhucVu.setSelected(false);
+        } else {
+            switch (entity.getTenVaiTro()) {
+                case "Quản lý":
+                    rdoQuanLy.setSelected(true);
+                    break;
+                case "Nhân viên":
+                    rdoNhanVien.setSelected(true);
+                    break;
+                case "Phục vụ":
+                    rdoPhucVu.setSelected(true);
+                    break;
+                default:
+                    // Không chọn radio button nào nếu giá trị lạ
+                    rdoQuanLy.setSelected(false);
+                    rdoNhanVien.setSelected(false);
+                    rdoPhucVu.setSelected(false);
+            }
     txtEmail.setText(entity.getEmail());
     txtLuong.setText(String.valueOf(entity.getLuongCoBan()));
 
@@ -413,41 +482,60 @@ public void setForm(NhanVien entity) {
         dcNgaySinh.setDate(entity.getNgaySinh());
     }
 
-    tenAnh = entity.getAnh(); // lưu lại đường dẫn ảnh đang được hiển thị
+    String tenAnh = entity.getAnh(); // chỉ là tên file, ví dụ: nv01.jpg
 
     if (tenAnh != null && !tenAnh.isEmpty()) {
-        File file = new File(tenAnh);
-        if (file.exists()) { // kiểm tra ảnh có tồn tại thật không
-            ImageIcon icon = new ImageIcon(tenAnh);
-            Image img = icon.getImage().getScaledInstance(195, 149, Image.SCALE_SMOOTH);
+        String fullPath = "src/img/" + tenAnh; // Đường dẫn mới
+        File file = new File(fullPath);
+
+        if (file.exists()) {
+            ImageIcon icon = new ImageIcon(fullPath);
+            Image img = icon.getImage().getScaledInstance(206, 176, Image.SCALE_SMOOTH);
             lblAnh.setIcon(new ImageIcon(img));
         } else {
             lblAnh.setIcon(null);
-            System.out.println("Ảnh không tồn tại: " + tenAnh);
+            System.out.println("Không tìm thấy ảnh: " + fullPath);
         }
     } else {
         lblAnh.setIcon(null);
+    }
+
     }
 }
 
 
     @Override
-   public NhanVien getForm() {
+public NhanVien getForm() {
     NhanVien nv = new NhanVien();
+    NhanVienImpl vtDao = new NhanVienImpl();
 
     nv.setMaNV(txtMaNV.getText().trim());
     nv.setHoTen(txtTenNV.getText().trim());
-    nv.setMaVaiTro(Integer.parseInt(txtMaVaiTro.getText().trim()));
+
+    String tenVaiTro = null;
+    if (rdoQuanLy.isSelected()) {
+        tenVaiTro = "Quản lý";
+    } else if (rdoNhanVien.isSelected()) {
+        tenVaiTro = "Nhân viên";
+    } else if (rdoPhucVu.isSelected()) {
+        tenVaiTro = "Phục vụ";
+    }
+
+    // Lấy mã vai trò từ tên
+    int  maVaiTro = vtDao.getMaVaiTro(tenVaiTro);
+    nv.setMaVaiTro(maVaiTro);
+
     nv.setEmail(txtEmail.getText().trim());
     nv.setLuongCoBan(Double.parseDouble(txtLuong.getText().trim()));
 
     Date ngaySinh = dcNgaySinh.getDate();
     nv.setNgaySinh(ngaySinh);
 
-    nv.setAnh(tenAnh); // ảnh đã được chọn trước đó
+    nv.setAnh(tenAnh); // ảnh đã chọn
 
     return nv;
 }
+
 
 
     @Override
@@ -459,7 +547,7 @@ public void setForm(NhanVien entity) {
             Object[] rowData = {
                 item.getMaNV(),
                 item.getHoTen(),
-                item.getMaVaiTro(),
+                item.getTenVaiTro(),
                 item.getMatKhau(),
                 item.getEmail(),
                 item.getLuongCoBan(),
@@ -479,7 +567,7 @@ public void setForm(NhanVien entity) {
 
     @Override
     public void create() {
-        if (!Checkall()) return; // Kiểm tra dữ liệu nhập hợp lệ
+        if (!Checkall()) return; 
 
         if (UDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
             NhanVien entity = this.getForm();
@@ -574,17 +662,8 @@ public void delete() {
         return false;
     }
 
-    // Kiểm tra mã vai trò
-    if (txtMaVaiTro.getText().trim().isEmpty()) {
-        UDialog.alert("Vui lòng nhập mã vai trò!");
-        txtMaVaiTro.requestFocus();
-        return false;
-    }
-    try {
-        Integer.parseInt(txtMaVaiTro.getText().trim());
-    } catch (NumberFormatException e) {
-        UDialog.alert("Mã vai trò phải là số nguyên!");
-        txtMaVaiTro.requestFocus();
+    if (!rdoQuanLy.isSelected() && !rdoNhanVien.isSelected() && !rdoPhucVu.isSelected()) {
+        UDialog.alert("Vui lòng chọn chức vụ.");
         return false;
     }
 
@@ -638,7 +717,7 @@ public void delete() {
 
     public void fillToTableTheoDieuKien() {
     try {
-        NhanVienImpl dao = new NhanVienImpl(); // hoặc Loginimpl nếu bạn dùng chung DAO
+        NhanVienImpl dao = new NhanVienImpl(); 
         String keyword = txtFind.getText().trim();
         List<NhanVien> list = dao.findByKeyword(keyword);
 
@@ -654,11 +733,12 @@ public void delete() {
             Object[] row = {
                 nv.getMaNV(),
                 nv.getHoTen(),
+                nv.getTenVaiTro(),
+                nv.getMatKhau(),
                 nv.getEmail(),
-                nv.getNgaySinh(),
                 nv.getLuongCoBan(),
-                nv.getMaVaiTro(),
-                false
+                nv.getNgaySinh(),
+                nv.getAnh()
             };
             model.addRow(row);
         }
